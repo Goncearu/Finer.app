@@ -27,3 +27,9 @@ flutter:
    - images/Sushi-Web.jpg
    - images/Burger-Web.jpg
 
+  fonts:
+    - family: Galano
+      fonts:
+        - asset: fonts/Galano-Regular.ttf
+        - asset: fonts/Galano-Medium.ttf
+        - asset: fonts/Galano-SemiBold.ttf
