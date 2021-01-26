@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData.dark().copyWith(
           primaryColor: Colors.black,
           scaffoldBackgroundColor: Colors.black,
-          cardColor: Colors.black,
+          cardColor: Colors.white12,
           textTheme: GoogleFonts.latoTextTheme(
             Theme.of(context).textTheme,
           ),
