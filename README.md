@@ -1,4 +1,4 @@
-# armenu_app
+# Finer
 
 A new Flutter application for armenu.privent.ro
 
