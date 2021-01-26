@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         theme: ThemeData.dark().copyWith(
-          primaryColor: Colors.black,
+          primaryColor: Colors.purpleAccent,
           scaffoldBackgroundColor: Colors.black,
           cardColor: Colors.white12,
           textTheme: GoogleFonts.latoTextTheme(
