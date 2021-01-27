@@ -1,5 +1,7 @@
-import 'package:armenu_app/screens/VirtualTable/virtualTable.dart';
+
 import 'package:flutter/material.dart';
+
+import 'screens/VirtualTable/virtualTable.dart';
 
 void main() => runApp(MaterialApp(
   debugShowCheckedModeBanner: false,

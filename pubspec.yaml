@@ -22,10 +22,7 @@ flutter:
   uses-material-design: true
 
   assets:
-   - images/omletaCuLegume-Web.jpg
-   - images/OuaPrajite-Web.jpg
-   - images/Sushi-Web.jpg
-   - images/Burger-Web.jpg
+   - images/
 
   fonts:
     - family: Galano
