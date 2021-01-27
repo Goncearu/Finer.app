@@ -39,3 +39,7 @@ app.*.symbols
 
 # Obfuscation related
 app.*.map.json
+android/app/src/main/java/com/example/food_delivery/MainActivity.java
+ios/Runner/AppDelegate.h
+ios/Runner/AppDelegate.m
+ios/Runner/main.m

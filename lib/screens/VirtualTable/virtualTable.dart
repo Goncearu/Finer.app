@@ -1,4 +1,3 @@
-import 'package:armenu_app/widgets/titleBar.dart';
 import 'package:flutter/material.dart';
 
 class VirtualTable extends StatelessWidget {
@@ -21,18 +20,14 @@ class VirtualTable extends StatelessWidget {
               ],
               backgroundColor: Colors.purple,
             ),
-
             Container(
               decoration: BoxDecoration(
                 image: DecorationImage(
-                image: AssetImage('images/OuaPrajite-Web.jpg'),
+                  image: AssetImage('images/OuaPrajite-Web.jpg'),
+                ),
               ),
             ),
-            ),
-            Container(
-
-
-            ),
+            Container(),
           ],
         ),
       ),
