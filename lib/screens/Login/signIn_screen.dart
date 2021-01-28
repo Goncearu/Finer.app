@@ -1,24 +1,22 @@
 import 'package:armenu_app/utils/styles.dart';
 import 'package:flutter/material.dart';
-import 'components/settings_body.dart';
 
-class SettingsScreen extends StatelessWidget {
+import 'components/signIn_body.dart';
 
-  static String routeName = '/profile';
-
+class SignInScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-            'Setari',
+            'Sign In',
           style: TextStyle(
-            color: mainPrimaryColor,
-            fontSize: 20,
+              color: mainPrimaryColor,
+              fontSize: 20
           ),
         ),
       ),
-      body: SettingsBody()
+      body: SignInBody(),
     );
   }
 }

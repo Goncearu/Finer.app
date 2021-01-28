@@ -1,21 +1,11 @@
-<<<<<<< HEAD
-=======
-
->>>>>>> 0ca897b15f90682771f7b0f5d7b25bcdcd463915
+import 'package:armenu_app/screens/Login/signIn_screen.dart';
+import 'package:armenu_app/screens/Menu/menu.dart';
+import 'package:armenu_app/screens/Settings/components/profilePicture.dart';
+import 'package:armenu_app/screens/Settings/settings_screen.dart';
+import 'package:armenu_app/screens/VirtualTable/virtualTable_screen.dart';
+import 'package:armenu_app/screens/Waiter/waiter_screen.dart';
+import 'package:armenu_app/utils/styles.dart';
 import 'package:flutter/material.dart';
-<<<<<<< HEAD
-import 'package:armenu_app/screens/menu/menu.dart';
-import 'package:armenu_app/utils/theme.dart';
-
-import 'screens/VirtualTable/virtualTable.dart';
-
-void main() => runApp(MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: lightTheme,
-      home: Menu(),
-    ));
-=======
-import 'screens/VirtualTable/virtualTable.dart';
 
 void main() => runApp(FinerApp());
 
@@ -25,14 +15,16 @@ class FinerApp extends StatelessWidget {
     return  MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        fontFamily: 'Galano',
-        hintColor: Color(0xFFd0cece),
+        scaffoldBackgroundColor: Color(0xFFFFFFFF),
+        appBarTheme: AppBarTheme(
+          color: Color(0xFFFFFFFF),
+          elevation: 0.5,
         ),
-      home: VirtualTable(),
+        fontFamily: 'Galano',
+        ),
+      home: Menu(),
     );
   }
 }
 
 
-
->>>>>>> e83d97dcb06206a13c156f3b151e320741e3d9e6
