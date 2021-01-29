@@ -13,22 +13,12 @@ class SignInBody extends StatelessWidget {
           child: Column(
             children: [
               Text(
-                'Finer App',
+                'Finer',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 50,
                 color: mainPrimaryColor,
               ),
-                textAlign: TextAlign.center,
-              ),
-              Text(
-                'New era for restaurants. AR Menu, Virtual Table, Instant order ',
-                style: TextStyle(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 12,
-                  color: mainTextPressedColor,
-                ),
-                textAlign: TextAlign.center,
               ),
               SignForm(),
             ],
@@ -47,15 +37,67 @@ class _SignFormState extends State<SignForm> {
   @override
   Widget build(BuildContext context) {
     return Form(
-      child: Column(
-        children: [
-          TextField(
-            decoration: InputDecoration(
-              hintText: 'Email',
-            ),
-          ),
-        ],
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 40),
+        child: Column(
+          children: [
+            SizedBox(height: 60),
+            buildEmailFormField(),
+            SizedBox(height: 30),
+            buildPasswordFormField(),
+          ],
+        ),
       ),
     );
+  }
+
+  TextFormField buildPasswordFormField() {
+    return TextFormField(
+            obscureText: true,
+            decoration: InputDecoration(
+              labelText: 'Password',
+              hintText: 'Password',
+              floatingLabelBehavior: FloatingLabelBehavior.always,
+              contentPadding: EdgeInsets.symmetric(
+                horizontal: 40,
+                vertical: 20,
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: BorderSide(color: mainTextPressedColor),
+                gapPadding: 10,
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: BorderSide(color: mainPrimaryColor),
+                gapPadding: 10,
+              ),
+            ),
+          );
+  }
+
+  TextFormField buildEmailFormField() {
+    return TextFormField(
+            keyboardType: TextInputType.emailAddress,
+            decoration: InputDecoration(
+              labelText: 'Email',
+              hintText: 'Email',
+              floatingLabelBehavior: FloatingLabelBehavior.always,
+              contentPadding: EdgeInsets.symmetric(
+                horizontal: 40,
+                vertical: 20,
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: BorderSide(color: mainTextPressedColor),
+                gapPadding: 10,
+              ),
+              focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: BorderSide(color: mainPrimaryColor),
+                  gapPadding: 10,
+            ),
+          ),
+          );
   }
 }

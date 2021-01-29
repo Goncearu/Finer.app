@@ -1,4 +1,4 @@
-import 'package:armenu_app/screens/VirtualTable/virtualTable_screen.dart';
+
 import 'package:armenu_app/utils/styles.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +17,7 @@ class SignInScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: VirtualTable(),
+      body: SignInBody(),
     );
   }
 }
