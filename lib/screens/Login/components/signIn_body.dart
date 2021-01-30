@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:armenu_app/utils/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -38,7 +37,7 @@ class _SignFormState extends State<SignForm> {
   Widget build(BuildContext context) {
     return Form(
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 40),
+        padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           children: [
             SizedBox(height: 60),
