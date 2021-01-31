@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:armenu_app/utils/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'logInButton.dart';
 
 class SignInBody extends StatelessWidget {
   @override
@@ -11,6 +12,7 @@ class SignInBody extends StatelessWidget {
           width: double.infinity,
           child: Column(
             children: [
+              SizedBox(height: 50),
               Text(
                 'Finer',
               style: TextStyle(
@@ -33,17 +35,27 @@ class SignForm extends StatefulWidget {
 }
 
 class _SignFormState extends State<SignForm> {
+
+  final _formKey = GlobalKey<FormState>();
+  final List<String> errors=[];
   @override
   Widget build(BuildContext context) {
     return Form(
+      key: _formKey,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 40),
         child: Column(
           children: [
             SizedBox(height: 60),
             buildEmailFormField(),
             SizedBox(height: 30),
             buildPasswordFormField(),
+            SizedBox(height: 30),
+            LogInRequestButton(
+              text: 'LogIn',
+              press: () {},
+            ),
+
           ],
         ),
       ),
@@ -78,12 +90,21 @@ class _SignFormState extends State<SignForm> {
   TextFormField buildEmailFormField() {
     return TextFormField(
             keyboardType: TextInputType.emailAddress,
+            validator: (value){
+             if(value.isEmpty)
+               {
+                 setState(() {
+                   errors.add('Adauga adresa de email');
+                 });
+               }
+             return null;
+            },
             decoration: InputDecoration(
               labelText: 'Email',
               hintText: 'Email',
               floatingLabelBehavior: FloatingLabelBehavior.always,
               contentPadding: EdgeInsets.symmetric(
-                horizontal: 40,
+                horizontal: 50,
                 vertical: 20,
               ),
               enabledBorder: OutlineInputBorder(

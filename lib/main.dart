@@ -1,5 +1,5 @@
 
-import 'package:armenu_app/screens/VirtualTable/virtualTable_screen.dart';
+import 'package:armenu_app/screens/Login/signIn_screen.dart';
 import 'package:flutter/material.dart';
 
 
@@ -19,7 +19,7 @@ class FinerApp extends StatelessWidget {
         ),
         fontFamily: 'Galano',
       ),
-      home: VirtualTable(),
+      home: SignInScreen(),
     );
   }
 }
