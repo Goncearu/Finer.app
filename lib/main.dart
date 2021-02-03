@@ -1,5 +1,5 @@
 
-import 'package:armenu_app/screens/Login/signIn_screen.dart';
+import 'package:armenu_app/screens/SignIn/signIn_screen.dart';
 import 'package:flutter/material.dart';
 
 

@@ -9,7 +9,7 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.0
-  google_fonts: ^1.1.1
+
 
 dev_dependencies:
   flutter_test:
@@ -21,11 +21,12 @@ flutter:
   uses-material-design: true
 
   assets:
-   - images/
+   - assets/images/
+   - assets/icons/facebook-2.svg
 
   fonts:
     - family: Galano
       fonts:
-        - asset: fonts/Galano-Regular.ttf
-        - asset: fonts/Galano-Medium.ttf
-        - asset: fonts/Galano-SemiBold.ttf
+        - asset: assets/fonts/Galano-Regular.ttf
+        - asset: assets/fonts/Galano-Medium.ttf
+        - asset: assets/fonts/Galano-SemiBold.ttf
