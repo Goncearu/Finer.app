@@ -19,9 +19,8 @@ class MenuBodyState extends State<MenuBody> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-          child: Column(
+    return SafeArea(
+      child: Column(
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.only(top: 0, bottom: 8),
@@ -174,7 +173,7 @@ class MenuBodyState extends State<MenuBody> {
             ),
           )
         ],
-      )),
+      ),
     );
   }
 }

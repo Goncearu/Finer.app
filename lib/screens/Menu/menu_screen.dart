@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'components/menu_body.dart';
 
-class SignInScreen extends StatelessWidget {
+class MenuScreen extends StatelessWidget {
   static String routeName = '/menu';
 
   @override

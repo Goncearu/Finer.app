@@ -1,6 +1,5 @@
-
 import 'package:armenu_app/routes.dart';
-import 'package:armenu_app/screens/SignIn/signIn_screen.dart';
+import 'package:armenu_app/screens/menu/menu_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(FinerApp());
@@ -8,7 +7,7 @@ void main() => runApp(FinerApp());
 class FinerApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         scaffoldBackgroundColor: Color(0xFFFFFFFF),
@@ -18,9 +17,8 @@ class FinerApp extends StatelessWidget {
         ),
         fontFamily: 'Galano',
       ),
-      initialRoute: SignInScreen.routeName,
+      initialRoute: MenuScreen.routeName,
       routes: routes,
     );
   }
 }
-
