@@ -9,6 +9,7 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.0
+  flutter_svg: ^0.19.1
 
 
 dev_dependencies:
@@ -22,7 +23,7 @@ flutter:
 
   assets:
    - assets/images/
-   - assets/icons/facebook-2.svg
+   - assets/icons/
 
   fonts:
     - family: Galano

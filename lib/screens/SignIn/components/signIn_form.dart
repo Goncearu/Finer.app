@@ -1,3 +1,4 @@
+import 'package:armenu_app/screens/SignIn/forgotPassword/forgot_password_screen.dart';
 import 'package:armenu_app/utils/styles.dart';
 import 'package:flutter/material.dart';
 
@@ -46,10 +47,13 @@ class _SignFormState extends State<SignForm> {
                 ),
                 Text('Remember me'),
                 Spacer(),
-                Text(
-                  'Forgot Password',
-                  style: TextStyle(
-                      decoration: TextDecoration.underline
+                GestureDetector(
+                  onTap: () => Navigator.popAndPushNamed(context, ForgotPasswordScreen.routeName),
+                  child: Text(
+                    'Recuperare parolă',
+                    style: TextStyle(
+                        decoration: TextDecoration.underline
+                    ),
                   ),
                 ),
               ],
@@ -58,7 +62,7 @@ class _SignFormState extends State<SignForm> {
             FormError(errors: errors),
             SizedBox(height: 40),
             LogInRequestButton(
-              text: 'Log In',
+              text: 'Continuă',
               press: () {
                 if(_formKey.currentState.validate()) {
                   _formKey.currentState.save();
@@ -104,8 +108,8 @@ class _SignFormState extends State<SignForm> {
         return null;
       },
       decoration: InputDecoration(
-        labelText: 'Password',
-        hintText: 'Password',
+        labelText: 'Parolă',
+        hintText: 'Parolă',
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: Icon(Icons.lock_outline),
         contentPadding: EdgeInsets.symmetric(
@@ -161,6 +165,7 @@ class _SignFormState extends State<SignForm> {
       decoration: InputDecoration(
         labelText: 'Email',
         hintText: 'Email',
+        focusColor: mainPrimaryColor,
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: Icon(Icons.mail_outline),
         contentPadding: EdgeInsets.symmetric(

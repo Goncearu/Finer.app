@@ -1,25 +1,22 @@
-
 import 'package:armenu_app/utils/styles.dart';
 import 'package:flutter/material.dart';
+import 'package:armenu_app/screens/SignIn/forgotPassword/components/forgotPassword_body.dart';
 
-import 'components/signIn_body.dart';
-
-class SignInScreen extends StatelessWidget {
-  static String routeName = '/sign_in';
-
+class ForgotPasswordScreen extends StatelessWidget {
+  static String routeName = '/forgot_password';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-            'Sign In',
+          'Recuperare parola',
           style: TextStyle(
               color: mainPrimaryColor,
-              fontSize: 20
+              fontSize: 18
           ),
         ),
       ),
-      body: SignInBody(),
+      body: ForgotPasswordBody(),
     );
   }
 }
