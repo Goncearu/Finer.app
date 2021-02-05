@@ -26,81 +26,78 @@ class MenuBodyState extends State<MenuBody> {
             padding: const EdgeInsets.only(top: 0, bottom: 8),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ToggleButtons(
-                  borderRadius: BorderRadius.circular(20),
-                  color: mainSecondaryColor,
-                  selectedColor: mainSecondaryColor,
-                  splashColor: mainPrimaryColor,
-                  fillColor: mainPrimaryColor,
-                  renderBorder: false,
-                  children: <Widget>[
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(left: 5, right: 5),
+                  child: Center(
+                    child: Container(
+                      height: 50.0,
+                      decoration: BoxDecoration(boxShadow: [mainBoxShadow]),
+                      child: RaisedButton(
+                        onPressed: () {},
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(18.0)),
+                        padding: EdgeInsets.all(0.0),
+                        elevation: 0,
+                        child: Ink(
+                          decoration: BoxDecoration(
+                              gradient: mainPrimaryGradient,
+                              borderRadius: BorderRadius.circular(18.0)),
+                          child: Container(
+                            constraints: BoxConstraints(
+                                maxWidth: 150.0, minHeight: 50.0),
+                            alignment: Alignment.center,
+                            child: Text(
+                              "Mancare",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 15,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                          ),
+                        ),
                       ),
-                      child: Padding(
-                          padding: const EdgeInsets.only(
-                              left: 25, right: 25, top: 12, bottom: 12),
-                          child: Row(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(right: 5),
-                                child: Icon(
-                                  Icons.local_pizza,
-                                  size: 20.0,
-                                  semanticLabel:
-                                      'Text to announce in accessibility modes',
-                                ),
-                              ),
-                              Text(
-                                'Mancare',
-                                style: TextStyle(
-                                    fontSize: 20, fontWeight: FontWeight.bold),
-                              ),
-                            ],
-                          )),
                     ),
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 5, right: 5),
+                  child: Center(
+                    child: Container(
+                      height: 50.0,
+                      decoration:
+                          BoxDecoration(boxShadow: [secondaryBoxShadow]),
+                      child: RaisedButton(
+                        onPressed: () {},
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(18.0)),
+                        padding: EdgeInsets.all(0.0),
+                        elevation: 0,
+                        child: Ink(
+                          decoration: BoxDecoration(
+                              color: mainSecondaryColor,
+                              borderRadius: BorderRadius.circular(18.0)),
+                          child: Container(
+                            constraints: BoxConstraints(
+                                maxWidth: 150.0, minHeight: 50.0),
+                            alignment: Alignment.center,
+                            child: Text(
+                              "Bautura",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: mainPrimaryColor,
+                                fontSize: 15,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                          ),
+                        ),
                       ),
-                      child: Padding(
-                          padding: const EdgeInsets.only(
-                              left: 25, right: 25, top: 12, bottom: 12),
-                          child: Row(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(right: 5),
-                                child: Icon(
-                                  Icons.local_drink_sharp,
-                                  size: 20.0,
-                                  semanticLabel:
-                                      'Text to announce in accessibility modes',
-                                ),
-                              ),
-                              Text(
-                                'Bauturi',
-                                style: TextStyle(
-                                    fontSize: 20, fontWeight: FontWeight.bold),
-                              ),
-                            ],
-                          )),
                     ),
-                  ],
-                  isSelected: isSelected,
-                  onPressed: (index) {
-                    setState(() {
-                      for (var i = 0; i < isSelected.length; i++) {
-                        if (i == index) {
-                          isSelected[i] = true;
-                        } else {
-                          isSelected[i] = false;
-                        }
-                      }
-                    });
-                  },
-                )
+                  ),
+                ),
               ],
             ),
           ),
@@ -127,7 +124,7 @@ class MenuBodyState extends State<MenuBody> {
                       child: Padding(
                         padding: const EdgeInsets.only(left: 18, right: 18),
                         child: TextField(
-                            obscureText: true,
+                            obscureText: false,
                             decoration: InputDecoration(
                               hintText: 'Cauta produsul',
                               border: InputBorder.none,

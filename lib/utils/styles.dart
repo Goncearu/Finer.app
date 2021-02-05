@@ -19,3 +19,9 @@ const mainBoxShadow = BoxShadow(
   spreadRadius: 0.45,
   blurRadius: 18,
 );
+
+const secondaryBoxShadow = BoxShadow(
+  color: Color(0x20000000),
+  spreadRadius: 3,
+  blurRadius: 12,
+);
