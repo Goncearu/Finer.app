@@ -86,7 +86,7 @@ class _SignFormState extends State<SignForm> {
             errors.remove(kPassNullError);
           });
         } else if( value.length >= 8 &&
-            !errors.contains(kShortPassError)) {
+            errors.contains(kShortPassError)) {
           setState(() {
             errors.remove(kShortPassError);
           });
@@ -141,7 +141,7 @@ class _SignFormState extends State<SignForm> {
             errors.remove(kEmailNullError);
           });
         } else if(!emailValidatorRegExp.hasMatch(value) &&
-            !errors.contains(kInvalidEmailError)) {
+            errors.contains(kInvalidEmailError)) {
           setState(() {
             errors.remove(kInvalidEmailError);
           });

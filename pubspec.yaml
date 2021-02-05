@@ -1,5 +1,5 @@
 name: armenu_app
-description: A new Flutter application for armenu.privent.ro
+description: A new Flutter application for Finer.menu
 version: 1.0.0+1
 
 environment:
@@ -10,6 +10,9 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.0
   flutter_svg: ^0.19.1
+  firebase_core: 0.7.0
+  firebase_auth: ^0.20.0+1
+
 
 
 dev_dependencies:

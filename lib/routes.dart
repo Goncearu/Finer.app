@@ -1,3 +1,4 @@
+
 import 'package:armenu_app/screens/SignIn/forgotPassword/forgot_password_screen.dart';
 import 'package:armenu_app/screens/SignIn/signUp/signUp_screen.dart';
 import 'package:armenu_app/screens/menu/menu_screen.dart';
@@ -6,9 +7,8 @@ import 'screens/SignIn/signIn_screen.dart';
 
 final Map<String, WidgetBuilder> routes = {
   SignInScreen.routeName: (context) => SignInScreen(),
-  ForgotPasswordScreen.routeName: (context) => ForgotPasswordScreen(),
   SignUpScreen.routeName: (context) => SignUpScreen(),
+  ForgotPasswordScreen.routeName: (context) => ForgotPasswordScreen(),
   MenuScreen.routeName: (context) => MenuScreen(),
 
-  // LoginSuccessScreen.routeName: (context) => LoginSuccessScreen(),
 };
