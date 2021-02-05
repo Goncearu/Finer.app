@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "312842474107",
+    "project_id": "finer-a1f4b",
+    "storage_bucket": "finer-a1f4b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:312842474107:android:7209704f483268a37d48de",
+        "android_client_info": {
+          "package_name": "finer.menu"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "312842474107-iai1uftisulms7e25fbrav5gubhrv2le.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDyC8-LQe-WHmDLRmH4MIFbc9FQDS3WYbY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "312842474107-iai1uftisulms7e25fbrav5gubhrv2le.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

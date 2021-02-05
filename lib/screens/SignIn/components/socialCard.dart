@@ -21,8 +21,8 @@ class SocialCard extends StatelessWidget {
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         padding: EdgeInsets.all(12),
-        height: 45,
-        width: 45,
+        height: 50,
+        width: 50,
         decoration: BoxDecoration(
           color: Color(0xFFF5F6F9),
           shape: BoxShape.circle,
