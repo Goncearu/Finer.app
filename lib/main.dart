@@ -1,6 +1,10 @@
 import 'package:armenu_app/routes.dart';
 import 'package:armenu_app/screens/SignIn/signIn_screen.dart';
+import 'package:armenu_app/screens/menu/menu_screen.dart';
+import 'package:armenu_app/screens/menu/menu_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:armenu_app/utils/styles.dart';
 
 void main() => runApp(FinerApp());
 
@@ -17,7 +21,7 @@ class FinerApp extends StatelessWidget {
         ),
         fontFamily: 'Galano',
       ),
-      initialRoute: SignInScreen.routeName,
+      initialRoute: MenuScreen.routeName,
       routes: routes,
     );
   }
