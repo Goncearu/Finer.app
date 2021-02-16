@@ -2,20 +2,18 @@ import 'package:armenu_app/utils/styles.dart';
 import 'package:flutter/material.dart';
 
 
-class WaiterRequestButton extends StatelessWidget {
-  const WaiterRequestButton({
+class PaymentButton extends StatelessWidget {
+  const PaymentButton({
     Key key,
-    @required this.request,
     @required this.press,
   }) : super(key: key);
 
-  final String request;
   final Function press;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 2),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
       child: RaisedButton(
         textColor: mainTextPrimaryColor,
         elevation: 10,
@@ -32,7 +30,7 @@ class WaiterRequestButton extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10)),
             child: Center(
               child: Text(
-                request,
+                'Plateste nota',
                 style: TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.w700,

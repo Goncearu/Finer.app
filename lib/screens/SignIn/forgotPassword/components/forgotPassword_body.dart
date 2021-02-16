@@ -1,9 +1,8 @@
-import 'package:armenu_app/screens/SignIn/components/form_error.dart';
-import 'package:armenu_app/screens/SignIn/components/logInButton.dart';
-import 'package:armenu_app/screens/SignIn/components/noAccountText.dart';
-import 'package:flutter/material.dart';
 
-import '../../../../constants.dart';
+import 'package:armenu_app/screens/SignIn/components/logInButton.dart';
+import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
 
 
 class ForgotPasswordBody extends StatelessWidget {
@@ -46,46 +45,19 @@ class ForgotPassForm extends StatefulWidget {
 }
 
 class _ForgotPassFormState extends State<ForgotPassForm> {
-  final _formKey = GlobalKey<FormState>();
-  List<String> errors = [];
-  String email;
+  final TextEditingController _emailController = TextEditingController();
+  final _auth = FirebaseAuth.instance;
+
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: _formKey,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 30),
         child: Column(
           children: [
             TextFormField(
+              controller: _emailController,
               keyboardType: TextInputType.emailAddress,
-              onSaved: (newValue) => email = newValue,
-              onChanged: (value) {
-                if (value.isNotEmpty && errors.contains(kEmailNullError)) {
-                  setState(() {
-                    errors.remove(kEmailNullError);
-                  });
-                } else if (emailValidatorRegExp.hasMatch(value) &&
-                    errors.contains(kInvalidEmailError)) {
-                  setState(() {
-                    errors.remove(kInvalidEmailError);
-                  });
-                }
-                return null;
-              },
-              validator: (value) {
-                if (value.isEmpty && !errors.contains(kEmailNullError)) {
-                  setState(() {
-                    errors.add(kEmailNullError);
-                  });
-                } else if (!emailValidatorRegExp.hasMatch(value) &&
-                    !errors.contains(kInvalidEmailError)) {
-                  setState(() {
-                    errors.add(kInvalidEmailError);
-                  });
-                }
-                return null;
-              },
               decoration: InputDecoration(
                 labelText: "Email",
                 hintText: "Adauga adresa de email",
@@ -93,22 +65,62 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
                 suffixIcon: Icon(Icons.email_outlined),
               ),
             ),
-            SizedBox(height: 40),
-            FormError(errors: errors),
-            SizedBox(height: 100),
+            SizedBox(height: 140),
             LogInRequestButton(
-              text: "Continua",
-              press: () {
-                if (_formKey.currentState.validate()) {
-                  // Do what you want to do
-                }
-              },
+              text: "Trimite",
+              press: resetPassword,
             ),
-            SizedBox(height: 20),
-            NoAccountText(),
           ],
         ),
       ),
     );
+  }
+
+  Future<void> resetPassword() async {
+    final email = _emailController.text;
+    try {
+      await _auth.sendPasswordResetEmail(email: email);
+      showDialog(
+          context: context,
+          builder: (ctx) {
+            return AlertDialog(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10)
+              ),
+              title: Text('Congrats'),
+              content: Text('Sign In Succes'),
+              actions: [
+                FlatButton(
+                  onPressed: () {
+                    Navigator.of(ctx).pop();
+                  },
+                  child: Text('Cancel'),
+                ),
+              ],
+            );
+          }
+      );
+    } catch (e) {
+      showDialog(
+          context: context,
+          builder: (ctx) {
+            return AlertDialog(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10)
+              ),
+              title: Text('Error'),
+              content: Text(e.toString()),
+              actions: [
+                FlatButton(
+                  onPressed: () {
+                    Navigator.of(ctx).pop();
+                  },
+                  child: Text('Cancel'),
+                ),
+              ],
+            );
+          }
+      );
+    }
   }
 }

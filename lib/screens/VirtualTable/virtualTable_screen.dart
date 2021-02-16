@@ -1,11 +1,20 @@
+
+import 'package:armenu_app/screens/VirtualTable/components/virtualTable_body.dart';
 import 'package:armenu_app/utils/styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 
-class VirtualTable extends StatelessWidget {
+
+class VirtualTable extends StatefulWidget {
 
   static String routeName = '/virtualTable';
+
+  @override
+  _VirtualTableState createState() => _VirtualTableState();
+}
+
+class _VirtualTableState extends State<VirtualTable> {
 
   @override
   Widget build(BuildContext context) {
@@ -18,30 +27,7 @@ class VirtualTable extends StatelessWidget {
         fontSize: 20,
         ),)
       ),
-      body: SafeArea(
-        child: Column(
-          children: [
-            Container(
-              width: double.infinity,
-              margin: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-              height: 200,
-              decoration: BoxDecoration(
-                gradient: mainPrimaryGradient,
-                borderRadius: BorderRadius.circular(20)
-              ),
-            ),
-            Container(
-              width: double.infinity,
-              margin: EdgeInsets.symmetric(horizontal: 20),
-              height: 100,
-              decoration: BoxDecoration(
-                  color: Colors.black12,
-                  borderRadius: BorderRadius.circular(20)
-              ),
-            ),
-          ],
-        ),
-      ),
+      body: VirtualTableBody()
     );
   }
 }

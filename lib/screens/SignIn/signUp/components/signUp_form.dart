@@ -1,10 +1,16 @@
 
-import 'package:armenu_app/screens/SignIn/components/form_error.dart';
 import 'package:armenu_app/screens/SignIn/components/logInButton.dart';
 import 'package:armenu_app/screens/SignIn/components/socialCard.dart';
+import 'package:armenu_app/screens/SignIn/signUp/components/verify_screen.dart';
 import 'package:armenu_app/utils/styles.dart';
 import 'package:flutter/material.dart';
-import 'package:armenu_app/constants.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+
+import '../../../../homePage.dart';
+
 
 class SignUpForm extends StatefulWidget {
   @override
@@ -12,17 +18,16 @@ class SignUpForm extends StatefulWidget {
 }
 
 class _SignUpFormState extends State<SignUpForm> {
-  final _formKey = GlobalKey<FormState>();
-  String name;
-  String email;
-  String password;
-  String confirmPassword;
-  List<String> errors = [];
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseFirestore _db = FirebaseFirestore.instance;
+  final TextEditingController  _emailController = TextEditingController();
+  final TextEditingController  _passwordController = TextEditingController();
+  final TextEditingController  _nameController = TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: _formKey,
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 20,horizontal: 40),
         child: Column(
@@ -36,7 +41,7 @@ class _SignUpFormState extends State<SignUpForm> {
                 ),
                 SocialCard(
                   icon: "assets/icons/google-icon.svg",
-                  press: () {},
+                  press: signInGoogle,
                 ),
               ],
             ),
@@ -47,15 +52,11 @@ class _SignUpFormState extends State<SignUpForm> {
             SizedBox(height: 20),
             buildPasswordFormField(),
             SizedBox(height: 20),
-            buildConfPasswordFormField(),
-            FormError(errors: errors),
             SizedBox(height: 50),
-            LogInRequestButton(text: 'Continua', press: () {
-              if (_formKey.currentState.validate()) {
-                  _formKey.currentState.save();
-                  // Navigator.popAndPushNamed(context, CompleteAccountScreen.routeName);
-              }
-            }),
+            LogInRequestButton(
+                text: 'Register',
+                press: signUp,
+            ),
             SizedBox(height: 20),
           ],
         ),
@@ -63,26 +64,10 @@ class _SignUpFormState extends State<SignUpForm> {
     );
   }
 
+
   TextFormField buildNameFormField() {
     return TextFormField(
-          keyboardType: TextInputType.name,
-          onSaved: (newValue) => name = newValue,
-          onChanged: (value) {
-            if (value.isNotEmpty && errors.contains(kNamelNullError)) {
-              setState(() {
-                errors.remove(kNamelNullError);
-              });
-            }
-            return null;
-          },
-          validator: (value) {
-            if (value.isEmpty && !errors.contains(kNamelNullError)) {
-              setState(() {
-                errors.add(kNamelNullError);
-              });
-            }
-            return null;
-          },
+          controller: _nameController,
           decoration: InputDecoration(
             labelText: 'Nume',
             hintText: 'Nume',
@@ -109,34 +94,8 @@ class _SignUpFormState extends State<SignUpForm> {
 
   TextFormField buildEmailFormField() {
     return TextFormField(
+      controller: _emailController,
       keyboardType: TextInputType.emailAddress,
-      onSaved: (newValue) => email = newValue,
-      onChanged: (value) {
-        if (value.isNotEmpty && errors.contains(kEmailNullError)) {
-          setState(() {
-            errors.remove(kEmailNullError);
-          });
-        } else if (!emailValidatorRegExp.hasMatch(value) &&
-            errors.contains(kInvalidEmailError)) {
-          setState(() {
-            errors.remove(kInvalidEmailError);
-          });
-        }
-        return null;
-      },
-      validator: (value) {
-        if (value.isEmpty && !errors.contains(kEmailNullError)) {
-          setState(() {
-            errors.add(kEmailNullError);
-          });
-        } else if (!emailValidatorRegExp.hasMatch(value) &&
-            !errors.contains(kInvalidEmailError)) {
-          setState(() {
-            errors.add(kInvalidEmailError);
-          });
-        }
-        return null;
-      },
       decoration: InputDecoration(
         labelText: 'Email',
         hintText: 'Email',
@@ -163,33 +122,8 @@ class _SignUpFormState extends State<SignUpForm> {
 
   TextFormField buildPasswordFormField() {
     return TextFormField(
-      onSaved: (newValue) => password = newValue,
+      controller: _passwordController,
       obscureText: true,
-      onChanged: (value) {
-        if (value.isNotEmpty && errors.contains(kPassNullError)) {
-          setState(() {
-            errors.remove(kPassNullError);
-          });
-        } else if (value.length >= 8 && errors.contains(kShortPassError)) {
-          setState(() {
-            errors.remove(kShortPassError);
-          });
-        }
-        password = value;
-        return null;
-      },
-      validator: (value) {
-        if (value.isEmpty && !errors.contains(kPassNullError)) {
-          setState(() {
-            errors.add(kPassNullError);
-          });
-        } else if (value.length < 8 && !errors.contains(kShortPassError)) {
-          setState(() {
-            errors.add(kShortPassError);
-          });
-        }
-        return null;
-      },
       decoration: InputDecoration(
         labelText: 'Parolă',
         hintText: 'Parolă',
@@ -213,48 +147,133 @@ class _SignUpFormState extends State<SignUpForm> {
     );
   }
 
-  TextFormField buildConfPasswordFormField() {
-    return TextFormField(
-      onSaved: (newValue) => confirmPassword = newValue,
-      obscureText: true,
-      onChanged: (value) {
-        if (value == password && errors.contains(kMatchPassError)) {
-          setState(() {
-            errors.remove(kMatchPassError);
-          });
-        }
-        return null;
-      },
-      validator: (value) {
+  void signUp() async {
+    String email = _emailController.text.trim();
+    String password = _passwordController.text;
+    String name = _nameController.text;
+    try {
+      final newUser = await _auth.createUserWithEmailAndPassword(
+          email: email, password: password);
+      if (newUser != null) {
+        newUser.user.updateProfile(displayName: name);
+        _db.collection('users').doc(newUser.user.uid).set({
+          "email": email,
+          "name": name,
+          "lastseen": DateTime.now()
+        });
+        Navigator.popAndPushNamed(context, VerifyScreen.routeName);
+      }
+    } catch (e) {
+      showDialog(
+          context: context,
+          builder: (ctx) {
+            return AlertDialog(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10)
+              ),
+              title: Text('Error'),
+              content: Text(e.toString()),
+              actions: [
+                FlatButton(
+                  onPressed: () {
+                    Navigator.of(ctx).pop();
+                  },
+                  child: Text('Cancel'),
+                ),
+              ],
+            );
+          }
+      );
+    }
+  }
 
-        if (value != password && !errors.contains(kMatchPassError)) {
-          setState(() {
-            errors.add(kMatchPassError);
-          });
-        }
-        return null;
-      },
-      decoration: InputDecoration(
-        labelText: 'Confirmare parolă',
-        hintText: 'Confirmare parolă',
-        floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: Icon(Icons.lock_outline),
-        contentPadding: EdgeInsets.symmetric(
-          horizontal: 40,
-          vertical: 20,
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide: BorderSide(color: mainTextPressedColor),
-          gapPadding: 10,
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide: BorderSide(color: mainPrimaryColor),
-          gapPadding: 10,
-        ),
-      ),
-    );
+  Future <void> signInGoogle() async {
+    try {
+      final GoogleSignInAccount googleUser = await GoogleSignIn().signIn();
+      final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+      final GoogleAuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+      final User user =
+          (await _auth.signInWithCredential(credential)).user;
+      if(user != null) {
+        _db.collection('users').doc(user.uid).set({
+          "name" : user.displayName,
+          "lastseen" : DateTime.now(),
+          "email" : user.email,
+        });
+        Navigator.popAndPushNamed(context, HomePage.routeName);
+      }
+      return await FirebaseAuth.instance.signInWithCredential(credential);
+
+    } catch (e) {
+      showDialog(
+          context: context,
+          builder: (ctx) {
+            return AlertDialog(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10)
+              ),
+              title: Text('Error'),
+              content: Text(e.toString()),
+              actions: [
+                FlatButton(
+                  onPressed: () {
+                    Navigator.of(ctx).pop();
+                  },
+                  child: Text('Cancel'),
+                ),
+              ],
+            );
+          }
+      );
+    }
+
+  }
+
+  Future<void> signInFacebook() async {
+    try {
+      final AccessToken accessToken = await FacebookAuth.instance.login();
+      // Create a credential from the access token
+      final FacebookAuthCredential credential = FacebookAuthProvider.credential(
+        accessToken.token,
+      );
+      final User user =
+          (await _auth.signInWithCredential(credential)).user;
+      if (user != null) {
+        _db.collection('users').doc(user.uid).set({
+          "name": user.displayName,
+          "lastseen": DateTime.now(),
+          "email": user.email,
+          "profilePicture": user.photoURL,
+        });
+        Navigator.popAndPushNamed(context, HomePage.routeName);
+      }
+      return await FirebaseAuth.instance.signInWithCredential(credential);
+    } catch (e) {
+      showDialog(
+          context: context,
+          builder: (ctx) {
+            return AlertDialog(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10)
+              ),
+              title: Text('Error'),
+              content: Text(e.toString()),
+              actions: [
+                FlatButton(
+                  onPressed: () {
+                    Navigator.of(ctx).pop();
+                  },
+                  child: Text('Cancel'),
+                ),
+              ],
+            );
+          }
+      );
+    }
   }
 
 }
+
