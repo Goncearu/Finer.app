@@ -9,7 +9,7 @@ class SearchBarCart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 8, bottom: 8, left: 15, right: 15),
+      padding: const EdgeInsets.only(top: 8, left: 15, right: 15),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
