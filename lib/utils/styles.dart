@@ -12,6 +12,8 @@ const mainPrimaryGradient = LinearGradient(
 const mainPrimaryColor = Color(0xFFB40202);
 const mainSecondaryColor = Color(0xFFFFFFFF);
 const mainTextPrimaryColor = Color(0xFFFFFFFF);
+const mainTextBlack = Color(0xFF262D2F);
+const mainTextSemiBlack = Color(0xFF767777);
 const mainTextPressedColor = Color(0xFF262D2F);
 
 const mainBoxShadow = BoxShadow(
