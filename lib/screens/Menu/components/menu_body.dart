@@ -1,6 +1,7 @@
-import 'package:armenu_app/screens/menu/components/foodData.dart';
+import 'package:armenu_app/screens/Menu/components/foodData.dart';
 import 'package:armenu_app/screens/menu/components/searchBarCart.dart';
 import 'package:armenu_app/screens/menu/components/foodCard.dart';
+import 'package:armenu_app/screens/menu/components/cart.dart';
 import 'package:flutter/material.dart';
 import 'package:armenu_app/utils/styles.dart';
 import 'package:armenu_app/utils/theme.dart';
@@ -20,14 +21,13 @@ class MenuBodyState extends State<MenuBody> {
     isSelected = [false, true];
   }
 
-  final List<String> foodItems = ["boston", "text", "test"];
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 0, bottom: 8),
+            padding: const EdgeInsets.only(bottom: 8),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
@@ -106,13 +106,24 @@ class MenuBodyState extends State<MenuBody> {
             ),
           ),
           SearchBarCart(),
-          ListView.builder(
-              itemCount: properties.length,
-              shrinkWrap: true,
-              itemBuilder: (context, index) => FoodCard(
-                    title: properties[index].title,
-                    desc: 'ssss',
-                  ))
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.only(
+                  top:
+                      14), //// ListView.builder works only on Expanded // needs changes
+              child: ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: properties.length,
+                  itemBuilder: (context, index) => FoodCard(
+                        title: properties[index].title,
+                        desc: properties[index].desc,
+                        image: properties[index].image,
+                        likes: properties[index].likes,
+                        price: properties[index].price,
+                        weight: properties[index].weight,
+                      )),
+            ),
+          ),
         ],
       ),
     );

@@ -7,21 +7,39 @@ import 'package:armenu_app/utils/theme.dart';
 import 'dart:ui';
 
 class FoodCard extends StatefulWidget {
-  @override
-  const FoodCard({Key key, @required this.title, @required this.desc})
+  const FoodCard(
+      {Key key,
+      this.index,
+      this.category,
+      this.image,
+      this.title,
+      this.desc,
+      this.likes,
+      this.hasAr,
+      this.price,
+      this.weight})
       : super(key: key);
 
+  final double index;
+  final String category;
+  final String image;
   final String title;
   final String desc;
+  final double likes;
+  final bool hasAr;
+  final double price;
+  final String weight;
 
   FoodCardState createState() => FoodCardState();
+  FoodCardState setState() => FoodCardState();
 }
 
 class FoodCardState extends State<FoodCard> {
+  int quantity = 0;
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: const EdgeInsets.only(top: 15, left: 15, right: 15),
+        margin: const EdgeInsets.only(bottom: 15, left: 15, right: 15),
         decoration: BoxDecoration(
           color: mainSecondaryColor,
           borderRadius: BorderRadius.circular(18),
@@ -43,7 +61,7 @@ class FoodCardState extends State<FoodCard> {
                   borderRadius: BorderRadius.circular(18.0),
                   image: DecorationImage(
                       image: NetworkImage(
-                        "https://loremflickr.com/1200/600/salad",
+                        widget.image,
                       ),
                       fit: BoxFit.cover),
                 ),
@@ -72,13 +90,17 @@ class FoodCardState extends State<FoodCard> {
                                     ),
                                     children: [
                                       TextSpan(
-                                        text: '220',
+                                        text: widget.likes.toString(),
                                       ),
                                       WidgetSpan(
-                                        child: Icon(
-                                          Icons.thumb_up_rounded,
-                                          size: 12,
-                                          color: mainSecondaryColor,
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsets.only(left: 4),
+                                          child: Icon(
+                                            Icons.thumb_up_rounded,
+                                            size: 12,
+                                            color: mainSecondaryColor,
+                                          ),
                                         ),
                                       ),
                                     ],
@@ -112,7 +134,7 @@ class FoodCardState extends State<FoodCard> {
                                     ),
                                     children: [
                                       TextSpan(
-                                        text: "242 ",
+                                        text: "hasAR",
                                       ),
                                     ],
                                   ),
@@ -138,7 +160,7 @@ class FoodCardState extends State<FoodCard> {
                             Padding(
                               padding: const EdgeInsets.only(bottom: 8),
                               child: Text(
-                                title,
+                                widget.title,
                                 textAlign: TextAlign.left,
                                 style: TextStyle(
                                     color: mainTextBlack,
@@ -148,7 +170,7 @@ class FoodCardState extends State<FoodCard> {
                               ),
                             ),
                             Text(
-                              "Chiftele moldovenesti cu sos marinat",
+                              widget.desc,
                               textAlign: TextAlign.left,
                               style: TextStyle(
                                   color: mainTextSemiBlack,
@@ -165,7 +187,7 @@ class FoodCardState extends State<FoodCard> {
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             Text(
-                              "24 RON",
+                              widget.price.toString() + " RON",
                               textAlign: TextAlign.left,
                               style: TextStyle(
                                 color: mainTextBlack,
@@ -174,7 +196,7 @@ class FoodCardState extends State<FoodCard> {
                               ),
                             ),
                             Text(
-                              "300g",
+                              widget.weight,
                               textAlign: TextAlign.left,
                               style: TextStyle(
                                   color: mainTextSemiBlack,
@@ -184,111 +206,126 @@ class FoodCardState extends State<FoodCard> {
                             ),
                             Padding(
                               padding: const EdgeInsets.only(top: 8, bottom: 8),
-                              child: Row(children: [
-                                ButtonTheme(
-                                  padding: EdgeInsets.symmetric(
-                                      vertical: 2.0,
-                                      horizontal:
-                                          8.0), //adds padding inside the button
-                                  materialTapTargetSize: MaterialTapTargetSize
-                                      .shrinkWrap, //limits the touch area to the button area
-                                  minWidth: 0, //wraps child's width
-                                  height: 0, //wraps child's height
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: Color(0x60B40202),
-                                          spreadRadius: 0.25,
-                                          blurRadius: 12,
-                                        )
-                                      ],
-                                    ),
-                                    child: RaisedButton(
-                                      onPressed: () {},
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10.0)),
-                                      padding: EdgeInsets.all(0.0),
-                                      child: Ink(
+                              child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    ButtonTheme(
+                                      padding: EdgeInsets.symmetric(
+                                          vertical: 2.0,
+                                          horizontal:
+                                              8.0), //adds padding inside the button
+                                      materialTapTargetSize: MaterialTapTargetSize
+                                          .shrinkWrap, //limits the touch area to the button area
+                                      minWidth: 0, //wraps child's width
+                                      height: 0, //wraps child's height
+                                      child: Container(
                                         decoration: BoxDecoration(
-                                            gradient: mainPrimaryGradient,
-                                            borderRadius:
-                                                BorderRadius.circular(10.0)),
-                                        child: Container(
-                                          constraints: BoxConstraints(
-                                              maxWidth: 30.0, minHeight: 30.0),
-                                          alignment: Alignment.center,
-                                          child: Text(
-                                            "-",
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 18),
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color: Color(0x60B40202),
+                                              spreadRadius: 0.25,
+                                              blurRadius: 12,
+                                            )
+                                          ],
+                                        ),
+                                        child: RaisedButton(
+                                          onPressed: () {
+                                            setState(() {
+                                              if (quantity != 0)
+                                                quantity = quantity - 1;
+                                            });
+                                          },
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(10.0)),
+                                          padding: EdgeInsets.all(0.0),
+                                          child: Ink(
+                                            decoration: BoxDecoration(
+                                                gradient: mainPrimaryGradient,
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                        10.0)),
+                                            child: Container(
+                                              constraints: BoxConstraints(
+                                                  maxWidth: 30.0,
+                                                  minHeight: 30.0),
+                                              alignment: Alignment.center,
+                                              child: Text(
+                                                "-",
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 18),
+                                              ),
+                                            ),
                                           ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.only(left: 8, right: 8),
-                                  child: Text(
-                                    "14",
-                                    style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w600,
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 8, right: 8),
+                                      child: Text(
+                                        quantity.toString(),
+                                        style: TextStyle(
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
                                     ),
-                                  ),
-                                ),
-                                ButtonTheme(
-                                  padding: EdgeInsets.symmetric(
-                                      vertical: 2.0,
-                                      horizontal:
-                                          8.0), //adds padding inside the button
-                                  materialTapTargetSize: MaterialTapTargetSize
-                                      .shrinkWrap, //limits the touch area to the button area
-                                  minWidth: 0, //wraps child's width
-                                  height: 0, //wraps child's height
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: Color(0x60B40202),
-                                          spreadRadius: 0.25,
-                                          blurRadius: 12,
-                                        )
-                                      ],
-                                    ),
-                                    child: RaisedButton(
-                                      onPressed: () {},
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10.0)),
-                                      padding: EdgeInsets.all(0.0),
-                                      child: Ink(
+                                    ButtonTheme(
+                                      padding: EdgeInsets.symmetric(
+                                          vertical: 2.0,
+                                          horizontal:
+                                              8.0), //adds padding inside the button
+                                      materialTapTargetSize: MaterialTapTargetSize
+                                          .shrinkWrap, //limits the touch area to the button area
+                                      minWidth: 0, //wraps child's width
+                                      height: 0, //wraps child's height
+                                      child: Container(
                                         decoration: BoxDecoration(
-                                            gradient: mainPrimaryGradient,
-                                            borderRadius:
-                                                BorderRadius.circular(10.0)),
-                                        child: Container(
-                                          constraints: BoxConstraints(
-                                              maxWidth: 30.0, minHeight: 30.0),
-                                          alignment: Alignment.center,
-                                          child: Text(
-                                            "+",
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 18),
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color: Color(0x60B40202),
+                                              spreadRadius: 0.25,
+                                              blurRadius: 12,
+                                            )
+                                          ],
+                                        ),
+                                        child: RaisedButton(
+                                          onPressed: () {
+                                            setState(() {
+                                              quantity = quantity + 1;
+                                            });
+                                          },
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(10.0)),
+                                          padding: EdgeInsets.all(0.0),
+                                          child: Ink(
+                                            decoration: BoxDecoration(
+                                                gradient: mainPrimaryGradient,
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                        10.0)),
+                                            child: Container(
+                                              constraints: BoxConstraints(
+                                                  maxWidth: 30.0,
+                                                  minHeight: 30.0),
+                                              alignment: Alignment.center,
+                                              child: Text(
+                                                "+",
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 18),
+                                              ),
+                                            ),
                                           ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                ),
-                              ]),
+                                  ]),
 
                               //plus minus cart buton
                             ),
