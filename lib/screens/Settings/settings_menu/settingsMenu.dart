@@ -1,6 +1,4 @@
-
 import 'package:flutter/material.dart';
-
 
 class SettingsMenu extends StatelessWidget {
   const SettingsMenu({
@@ -8,7 +6,6 @@ class SettingsMenu extends StatelessWidget {
     @required this.text,
     @required this.colour,
     @required this.press,
-
   }) : super(key: key);
 
   final String text;
@@ -18,25 +15,17 @@ class SettingsMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 50,vertical: 10),
-      child: FlatButton(
+      padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 10),
+      child: RaisedButton(
         padding: EdgeInsets.all(15),
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(18)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
         color: colour,
         onPressed: press,
         child: Row(
           children: [
             Expanded(
-              child: Text(
-                text,
-                style: TextStyle(
-                  fontFamily: 'Galano',
-                  color: Colors.white,
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+              child: Text(text,
+                  style: Theme.of(context).textTheme.button.copyWith()),
             ),
             Icon(Icons.arrow_forward_ios)
           ],

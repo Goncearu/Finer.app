@@ -1,7 +1,7 @@
-
 import 'package:armenu_app/homePage.dart';
 import 'package:armenu_app/routes.dart';
 import 'package:armenu_app/screens/SignIn/signIn_screen.dart';
+import 'package:armenu_app/utils/theme.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -17,46 +17,35 @@ class FinerApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        scaffoldBackgroundColor: Color(0xFFFFFFFF),
-        appBarTheme: AppBarTheme(
-          color: Color(0xFFFFFFFF),
-          elevation: 0.5,
-        ),
-        fontFamily: 'Galano',
-      ),
+      theme: theme(),
       home: MainPage(),
       routes: routes,
     );
   }
 }
 
-  class MainPage extends StatefulWidget {
-    @override
-    _MainPageState createState() => _MainPageState();
-  }
-  
-  class _MainPageState extends State<MainPage> {
+class MainPage extends StatefulWidget {
+  @override
+  _MainPageState createState() => _MainPageState();
+}
 
-    final FirebaseAuth _auth = FirebaseAuth.instance;
+class _MainPageState extends State<MainPage> {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
-    @override
-    Widget build(BuildContext context) {
-      return StreamBuilder(
-          stream: _auth.authStateChanges(),
-          builder: (context, AsyncSnapshot<User> snapshot) {
-            if(snapshot.hasData) {
-              User user = snapshot.data;
-              if(user != null) {
-                return HomePage();
-              } else {
-                return SignInScreen();
-              }
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder(
+        stream: _auth.authStateChanges(),
+        builder: (context, AsyncSnapshot<User> snapshot) {
+          if (snapshot.hasData) {
+            User user = snapshot.data;
+            if (user != null) {
+              return HomePage();
+            } else {
+              return SignInScreen();
             }
-            return SignInScreen();
           }
-      );
-    }
+          return SignInScreen();
+        });
   }
-
-
+}
