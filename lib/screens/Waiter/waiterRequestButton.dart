@@ -1,7 +1,6 @@
 import 'package:armenu_app/utils/styles.dart';
 import 'package:flutter/material.dart';
 
-
 class WaiterRequestButton extends StatelessWidget {
   const WaiterRequestButton({
     Key key,
@@ -20,9 +19,8 @@ class WaiterRequestButton extends StatelessWidget {
         textColor: mainTextPrimaryColor,
         elevation: 10,
         padding: EdgeInsets.all(0),
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10)),
-        onPressed: (){},
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        onPressed: () {},
         child: SizedBox(
           width: double.infinity,
           height: 50,
@@ -31,13 +29,7 @@ class WaiterRequestButton extends StatelessWidget {
                 gradient: mainPrimaryGradient,
                 borderRadius: BorderRadius.circular(10)),
             child: Center(
-              child: Text(
-                request,
-                style: TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
+              child: Text(request, style: Theme.of(context).textTheme.button),
             ),
           ),
         ),

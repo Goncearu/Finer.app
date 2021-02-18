@@ -3,49 +3,53 @@ import 'package:flutter/material.dart';
 
 ThemeData theme() {
   return ThemeData(
-    scaffoldBackgroundColor: Colors.white,
-    fontFamily: "Muli",
+    scaffoldBackgroundColor: Color(0xFFFFFFFF),
     appBarTheme: appBarTheme(),
+    fontFamily: 'Galano',
     textTheme: textTheme(),
-    inputDecorationTheme: inputDecorationTheme(),
-    visualDensity: VisualDensity.adaptivePlatformDensity,
-  );
-}
-
-InputDecorationTheme inputDecorationTheme() {
-  var kTextColor;
-  OutlineInputBorder outlineInputBorder = OutlineInputBorder(
-    borderRadius: BorderRadius.circular(28),
-    borderSide: BorderSide(color: kTextColor),
-    gapPadding: 10,
-  );
-  return InputDecorationTheme(
-    // If  you are using latest version of flutter then lable text and hint text shown like this
-    // if you r using flutter less then 1.20.* then maybe this is not working properly
-    // if we are define our floatingLabelBehavior in our theme then it's not applayed
-    floatingLabelBehavior: FloatingLabelBehavior.always,
-    contentPadding: EdgeInsets.symmetric(horizontal: 42, vertical: 20),
-    enabledBorder: outlineInputBorder,
-    focusedBorder: outlineInputBorder,
-    border: outlineInputBorder,
-  );
-}
-
-TextTheme textTheme() {
-  return TextTheme(
-    bodyText1: TextStyle(color: mainTextPrimaryColor),
-    bodyText2: TextStyle(color: mainTextPressedColor),
   );
 }
 
 AppBarTheme appBarTheme() {
   return AppBarTheme(
-    color: Colors.white,
-    elevation: 0,
-    brightness: Brightness.light,
-    iconTheme: IconThemeData(color: Colors.black),
-    textTheme: TextTheme(
-      headline6: TextStyle(color: Color(0XFF8B8B8B), fontSize: 18),
+    color: Color(0xFFFFFFFF),
+    elevation: 0.5,
+  );
+}
+
+TextTheme textTheme() {
+  return TextTheme(
+    button: TextStyle(
+      color: mainTextPrimaryColor,
+      fontSize: 15,
+      fontWeight: FontWeight.w700,
+    ),
+    //waiterScreenTitle
+    headline1: TextStyle(
+      fontSize: 20,
+      fontWeight: FontWeight.bold,
+      color: mainTextBlack,
+    ),
+    //orderTableTitle
+    headline2: TextStyle(
+      fontSize: 16,
+      fontWeight: FontWeight.bold,
+      wordSpacing: 2,
+    ),
+    //orderTableTotal
+    headline3: TextStyle(
+      fontSize: 15,
+      fontWeight: FontWeight.bold,
+      wordSpacing: 2,
+    ),
+    //orderTableBody
+    bodyText1: TextStyle(
+      fontSize: 15,
+      color: mainTextBlack,
+    ),
+    bodyText2: TextStyle(
+      fontSize: 13,
+      color: mainTextBlack,
     ),
   );
 }

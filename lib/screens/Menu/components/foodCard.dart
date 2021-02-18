@@ -1,8 +1,5 @@
-import 'package:armenu_app/screens/menu/components/searchBarCart.dart';
-import 'package:armenu_app/screens/menu/components/foodData.dart';
 import 'package:flutter/material.dart';
 import 'package:armenu_app/utils/styles.dart';
-import 'package:armenu_app/utils/theme.dart';
 
 import 'dart:ui';
 

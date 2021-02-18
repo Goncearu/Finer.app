@@ -5,12 +5,11 @@ import 'package:armenu_app/screens/Waiter/waiter_screen.dart';
 import 'package:armenu_app/utils/styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-
 class HomePage extends StatefulWidget {
-
   static String routeName = '/homePage';
 
   @override
@@ -63,38 +62,38 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: SalomonBottomBar(
-        margin: EdgeInsets.all(40),
-        currentIndex: _SelectedTab.values.indexOf(_selectedTab),
-        onTap: _handleIndexChanged,
-        items: [
-          SalomonBottomBarItem(
-            icon: Icon(Icons.api_outlined),
-            title: Text("Masa"),
-            selectedColor: mainPrimaryColor,
-          ),
-
-          SalomonBottomBarItem(
-            icon: Icon(Icons.restaurant_menu_outlined),
-            title: Text("Meniu"),
-            selectedColor: mainPrimaryColor,
-          ),
-
-          SalomonBottomBarItem(
-            icon: Icon(Icons.wifi_calling_outlined),
-            title: Text("Ospatar"),
-            selectedColor: mainPrimaryColor,
-          ),
-
-          SalomonBottomBarItem(
-            icon: Icon(Icons.person),
-            title: Text("Profil"),
-            selectedColor: mainPrimaryColor,
-          ),
-        ],
+    return StreamProvider<User>(
+      create: (context) => FirebaseAuth.instance.authStateChanges(),
+      child: Scaffold(
+        bottomNavigationBar: SalomonBottomBar(
+          margin: EdgeInsets.only(left: 40, right: 40, bottom: 35),
+          currentIndex: _SelectedTab.values.indexOf(_selectedTab),
+          onTap: _handleIndexChanged,
+          items: [
+            SalomonBottomBarItem(
+              icon: Icon(Icons.api_outlined),
+              title: Text("Masa"),
+              selectedColor: mainPrimaryColor,
+            ),
+            SalomonBottomBarItem(
+              icon: Icon(Icons.restaurant_menu_outlined),
+              title: Text("Meniu"),
+              selectedColor: mainPrimaryColor,
+            ),
+            SalomonBottomBarItem(
+              icon: Icon(Icons.wifi_calling_outlined),
+              title: Text("Ospatar"),
+              selectedColor: mainPrimaryColor,
+            ),
+            SalomonBottomBarItem(
+              icon: Icon(Icons.person),
+              title: Text("Profil"),
+              selectedColor: mainPrimaryColor,
+            ),
+          ],
+        ),
+        body: _pages[_selectedPageIndex],
       ),
-      body: _pages[_selectedPageIndex],
     );
   }
 }
