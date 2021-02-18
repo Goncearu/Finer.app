@@ -1,4 +1,4 @@
-import 'package:armenu_app/screens/Settings/components/settingsMenu.dart';
+import 'package:armenu_app/screens/Settings/settings_menu/settingsMenu.dart';
 import 'package:armenu_app/screens/SignIn/signIn_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -47,20 +47,10 @@ class _SettingsBodyState extends State<SettingsBody> {
             padding: const EdgeInsets.all(10.0),
             child: Column(
               children: [
-                Text(
-                  loggedInUserName,
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                Text(
-                  loggedInUserEmail,
-                  style: TextStyle(
-                    fontSize: 10,
-                    fontWeight: FontWeight.w200,
-                  ),
-                ),
+                Text(loggedInUserName,
+                    style: Theme.of(context).textTheme.headline1),
+                Text(loggedInUserEmail,
+                    style: Theme.of(context).textTheme.headline3),
               ],
             ),
           ),
