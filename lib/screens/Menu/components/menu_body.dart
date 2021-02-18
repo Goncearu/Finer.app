@@ -1,7 +1,6 @@
 import 'package:armenu_app/screens/Menu/components/foodData.dart';
 import 'package:armenu_app/screens/menu/components/searchBarCart.dart';
 import 'package:armenu_app/screens/menu/components/foodCard.dart';
-import 'package:armenu_app/screens/menu/components/cart.dart';
 import 'package:flutter/material.dart';
 import 'package:armenu_app/utils/styles.dart';
 import 'dart:ui';

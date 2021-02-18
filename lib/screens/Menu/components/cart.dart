@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'menu_body.dart';
 import 'package:armenu_app/utils/styles.dart';
 
 void goToCart() {}
@@ -250,7 +249,7 @@ class Cart extends StatelessWidget {
                   )),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 5, right: 5),
+              padding: const EdgeInsets.only(left: 5, right: 5, bottom: 30),
               child: Center(
                 child: Container(
                   height: 50.0,
