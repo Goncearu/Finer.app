@@ -77,10 +77,10 @@ class _ProfilePictureState extends State<ProfilePicture> {
         _storage.ref().child('profilePicture/profilePicture$loggedInUserName');
     UploadTask uploadTask = ref.putFile(_profileImageFile);
     uploadTask.then((res) {
-        res.ref.getDownloadURL().then((fileURL) => url = fileURL);
-        loggedInUser.updateProfile(photoURL: url);
+      res.ref.getDownloadURL().then((fileURL) => url = fileURL);
+      loggedInUser.updateProfile(photoURL: url);
     });
-    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -91,29 +91,33 @@ class _ProfilePictureState extends State<ProfilePicture> {
         fit: StackFit.expand,
         overflow: Overflow.visible,
         children: [
-          CircleAvatar(
-              radius: 10,
-              backgroundColor: mainPrimaryColor,
-              child: _profileImageFile != null
-                  ? ClipRRect(
-                      borderRadius: BorderRadius.circular(100),
-                      child: Image.file(
-                        _profileImageFile,
-                        width: 140,
-                        height: 140,
-                        fit: BoxFit.cover,
-                      ),
-                    )
-                  : ClipRRect(
-                      borderRadius: BorderRadius.circular(100),
-                      child: FadeInImage(
-                          image: NetworkImage("${loggedInUser.photoURL}"),
-                          placeholder:
-                              AssetImage('assets/images/ProfilePicture.jpg'),
+          Container(
+            decoration: BoxDecoration(
+                shape: BoxShape.circle, gradient: mainPrimaryGradient),
+            child: CircleAvatar(
+                radius: 0,
+                backgroundColor: Colors.transparent,
+                child: _profileImageFile != null
+                    ? ClipRRect(
+                        borderRadius: BorderRadius.circular(100),
+                        child: Image.file(
+                          _profileImageFile,
                           width: 140,
                           height: 140,
-                          fit: BoxFit.cover),
-                    )),
+                          fit: BoxFit.cover,
+                        ),
+                      )
+                    : ClipRRect(
+                        borderRadius: BorderRadius.circular(100),
+                        child: FadeInImage(
+                            image: NetworkImage("${loggedInUser.photoURL}"),
+                            placeholder:
+                                AssetImage('assets/images/ProfilePicture.jpg'),
+                            width: 140,
+                            height: 140,
+                            fit: BoxFit.cover),
+                      )),
+          ),
           Positioned(
             right: -10,
             bottom: 0,

@@ -14,22 +14,39 @@ class WaiterRequestButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 2),
-      child: RaisedButton(
-        textColor: mainTextPrimaryColor,
-        elevation: 10,
-        padding: EdgeInsets.all(0),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        onPressed: () {},
-        child: SizedBox(
-          width: double.infinity,
-          height: 50,
-          child: Container(
-            decoration: BoxDecoration(
-                gradient: mainPrimaryGradient,
-                borderRadius: BorderRadius.circular(10)),
-            child: Center(
-              child: Text(request, style: Theme.of(context).textTheme.button),
+      padding: const EdgeInsets.only(top: 4, bottom: 2, left: 40, right: 40),
+      child: Center(
+        child: Container(
+          height: 50.0,
+          decoration: BoxDecoration(boxShadow: [
+            BoxShadow(
+              color: Color(0x80B40202),
+              spreadRadius: 0.45,
+              blurRadius: 12,
+            )
+          ]),
+          child: RaisedButton(
+            onPressed: () {},
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(18.0)),
+            padding: EdgeInsets.all(0.0),
+            elevation: 0,
+            child: Ink(
+              decoration: BoxDecoration(
+                  gradient: mainPrimaryGradient,
+                  borderRadius: BorderRadius.circular(18.0)),
+              child: Container(
+                alignment: Alignment.center,
+                child: Text(
+                  request,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
             ),
           ),
         ),

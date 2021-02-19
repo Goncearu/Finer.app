@@ -1,9 +1,7 @@
-
 import 'package:armenu_app/screens/SignIn/components/logInButton.dart';
+import 'package:armenu_app/utils/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
-
 
 class ForgotPasswordBody extends StatelessWidget {
   @override
@@ -12,22 +10,17 @@ class ForgotPasswordBody extends StatelessWidget {
       width: double.infinity,
       child: SingleChildScrollView(
         child: Padding(
-          padding:
-          EdgeInsets.symmetric(horizontal: 20),
+          padding: EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             children: [
               SizedBox(height: 50),
-              Text(
-                "Ai uitat parola?",
-                style: TextStyle(
-                  fontSize: 28,
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+              Text("Ai uitat parola?",
+                  style: Theme.of(context).textTheme.headline1),
               Text(
                 "Adauga adresa de email si iti vom trimite  \nun link pentru recuperarea parolei",
                 textAlign: TextAlign.center,
+                style: TextStyle(
+                    color: mainTextSemiBlack, fontSize: 14, height: 1.3),
               ),
               SizedBox(height: 100),
               ForgotPassForm(),
@@ -60,14 +53,25 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
               keyboardType: TextInputType.emailAddress,
               decoration: InputDecoration(
                 labelText: "Email",
+                labelStyle: TextStyle(color: mainPrimaryColor),
                 hintText: "Adauga adresa de email",
                 floatingLabelBehavior: FloatingLabelBehavior.always,
-                suffixIcon: Icon(Icons.email_outlined),
+                border: UnderlineInputBorder(
+                    borderSide: BorderSide(color: mainPrimaryColor)),
+                enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: mainTextPressedColor),
+                ),
+                focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: mainPrimaryColor)),
+                suffixIcon: Icon(
+                  Icons.email_outlined,
+                  color: mainTextPressedColor,
+                ),
               ),
             ),
             SizedBox(height: 140),
             LogInRequestButton(
-              text: "Trimite",
+              text: "Reseteaza parola",
               press: resetPassword,
             ),
           ],
@@ -85,8 +89,7 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
           builder: (ctx) {
             return AlertDialog(
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10)
-              ),
+                  borderRadius: BorderRadius.circular(10)),
               title: Text('Congrats'),
               content: Text('Sign In Succes'),
               actions: [
@@ -98,16 +101,14 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
                 ),
               ],
             );
-          }
-      );
+          });
     } catch (e) {
       showDialog(
           context: context,
           builder: (ctx) {
             return AlertDialog(
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10)
-              ),
+                  borderRadius: BorderRadius.circular(10)),
               title: Text('Error'),
               content: Text(e.toString()),
               actions: [
@@ -119,8 +120,7 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
                 ),
               ],
             );
-          }
-      );
+          });
     }
   }
 }

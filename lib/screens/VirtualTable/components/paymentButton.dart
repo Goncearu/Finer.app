@@ -1,7 +1,6 @@
 import 'package:armenu_app/utils/styles.dart';
 import 'package:flutter/material.dart';
 
-
 class PaymentButton extends StatelessWidget {
   const PaymentButton({
     Key key,
@@ -13,27 +12,31 @@ class PaymentButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-      child: RaisedButton(
-        textColor: mainTextPrimaryColor,
-        elevation: 10,
-        padding: EdgeInsets.all(0),
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10)),
-        onPressed: (){},
-        child: SizedBox(
-          width: double.infinity,
-          height: 50,
-          child: Container(
-            decoration: BoxDecoration(
-                gradient: mainPrimaryGradient,
-                borderRadius: BorderRadius.circular(10)),
-            child: Center(
-              child: Text(
-                'Plateste nota',
-                style: TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.w700,
+      padding: const EdgeInsets.only(top: 4, bottom: 30),
+      child: Center(
+        child: Container(
+          height: 50.0,
+          decoration: BoxDecoration(boxShadow: [mainBoxShadow]),
+          child: RaisedButton(
+            onPressed: () {},
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(18.0)),
+            padding: EdgeInsets.all(0.0),
+            elevation: 0,
+            child: Ink(
+              decoration: BoxDecoration(
+                  gradient: mainPrimaryGradient,
+                  borderRadius: BorderRadius.circular(18.0)),
+              child: Container(
+                alignment: Alignment.center,
+                child: Text(
+                  "Plătește nota",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
               ),
             ),

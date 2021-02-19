@@ -59,7 +59,7 @@ class _SettingsBodyState extends State<SettingsBody> {
           SettingsMenu(
               text: 'Istoric comenzi', colour: Colors.grey, press: () {}),
           SettingsMenu(
-              text: 'Metode de plată', colour: Colors.green, press: () {}),
+              text: 'Metode de plată', colour: Colors.green[700], press: () {}),
           SettingsMenu(
               text: 'Parăsește masa',
               colour: Colors.red,

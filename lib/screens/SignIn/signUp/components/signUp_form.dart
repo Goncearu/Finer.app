@@ -1,4 +1,3 @@
-
 import 'package:armenu_app/screens/SignIn/components/logInButton.dart';
 import 'package:armenu_app/screens/SignIn/components/socialCard.dart';
 import 'package:armenu_app/screens/SignIn/signUp/components/verify_screen.dart';
@@ -11,7 +10,6 @@ import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 
 import '../../../../homePage.dart';
 
-
 class SignUpForm extends StatefulWidget {
   @override
   _SignUpFormState createState() => _SignUpFormState();
@@ -20,28 +18,30 @@ class SignUpForm extends StatefulWidget {
 class _SignUpFormState extends State<SignUpForm> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _db = FirebaseFirestore.instance;
-  final TextEditingController  _emailController = TextEditingController();
-  final TextEditingController  _passwordController = TextEditingController();
-  final TextEditingController  _nameController = TextEditingController();
-
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Form(
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 20,horizontal: 40),
+        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 40),
         child: Column(
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SocialCard(
-                  icon: "assets/icons/facebook-2.svg",
-                  press: () {},
-                ),
+                    icon: "assets/icons/facebook-2.svg",
+                    press: signInFacebook,
+                    color: Color(0xFF4267B2),
+                    iconColor: Colors.white),
                 SocialCard(
                   icon: "assets/icons/google-icon.svg",
                   press: signInGoogle,
+                  color: Color(0xFFe0e0e0),
+                  iconColor: null,
                 ),
               ],
             ),
@@ -54,8 +54,8 @@ class _SignUpFormState extends State<SignUpForm> {
             SizedBox(height: 20),
             SizedBox(height: 50),
             LogInRequestButton(
-                text: 'Register',
-                press: signUp,
+              text: 'Register',
+              press: signUp,
             ),
             SizedBox(height: 20),
           ],
@@ -64,32 +64,30 @@ class _SignUpFormState extends State<SignUpForm> {
     );
   }
 
-
   TextFormField buildNameFormField() {
     return TextFormField(
-          controller: _nameController,
-          decoration: InputDecoration(
-            labelText: 'Nume',
-            hintText: 'Nume',
-            focusColor: mainPrimaryColor,
-            floatingLabelBehavior: FloatingLabelBehavior.always,
-            suffixIcon: Icon(Icons.account_circle_outlined),
-            contentPadding: EdgeInsets.symmetric(
-              horizontal: 50,
-              vertical: 20,
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-              borderSide: BorderSide(color: mainTextPressedColor),
-              gapPadding: 10,
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-              borderSide: BorderSide(color: mainPrimaryColor),
-              gapPadding: 10,
-            ),
-          ),
-        );
+      controller: _nameController,
+      decoration: InputDecoration(
+        hintText: 'Nume',
+        focusColor: mainPrimaryColor,
+        floatingLabelBehavior: FloatingLabelBehavior.always,
+        suffixIcon: Icon(
+          Icons.account_circle_outlined,
+          color: mainTextPressedColor,
+        ),
+        contentPadding: EdgeInsets.symmetric(
+          horizontal: 0,
+          vertical: 10,
+        ),
+        border: UnderlineInputBorder(
+            borderSide: BorderSide(color: mainPrimaryColor)),
+        enabledBorder: UnderlineInputBorder(
+          borderSide: BorderSide(color: mainTextPressedColor),
+        ),
+        focusedBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: mainPrimaryColor)),
+      ),
+    );
   }
 
   TextFormField buildEmailFormField() {
@@ -97,25 +95,24 @@ class _SignUpFormState extends State<SignUpForm> {
       controller: _emailController,
       keyboardType: TextInputType.emailAddress,
       decoration: InputDecoration(
-        labelText: 'Email',
         hintText: 'Email',
         focusColor: mainPrimaryColor,
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: Icon(Icons.mail_outline),
+        suffixIcon: Icon(
+          Icons.mail_outline,
+          color: mainTextPressedColor,
+        ),
         contentPadding: EdgeInsets.symmetric(
-          horizontal: 50,
-          vertical: 20,
+          horizontal: 0,
+          vertical: 10,
         ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
+        border: UnderlineInputBorder(
+            borderSide: BorderSide(color: mainPrimaryColor)),
+        enabledBorder: UnderlineInputBorder(
           borderSide: BorderSide(color: mainTextPressedColor),
-          gapPadding: 10,
         ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide: BorderSide(color: mainPrimaryColor),
-          gapPadding: 10,
-        ),
+        focusedBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: mainPrimaryColor)),
       ),
     );
   }
@@ -125,24 +122,23 @@ class _SignUpFormState extends State<SignUpForm> {
       controller: _passwordController,
       obscureText: true,
       decoration: InputDecoration(
-        labelText: 'Parolă',
         hintText: 'Parolă',
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: Icon(Icons.lock_outline),
+        suffixIcon: Icon(
+          Icons.lock_outline,
+          color: mainTextPressedColor,
+        ),
         contentPadding: EdgeInsets.symmetric(
-          horizontal: 40,
-          vertical: 20,
+          horizontal: 0,
+          vertical: 10,
         ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
+        border: UnderlineInputBorder(
+            borderSide: BorderSide(color: mainPrimaryColor)),
+        enabledBorder: UnderlineInputBorder(
           borderSide: BorderSide(color: mainTextPressedColor),
-          gapPadding: 10,
         ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide: BorderSide(color: mainPrimaryColor),
-          gapPadding: 10,
-        ),
+        focusedBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: mainPrimaryColor)),
       ),
     );
   }
@@ -156,11 +152,10 @@ class _SignUpFormState extends State<SignUpForm> {
           email: email, password: password);
       if (newUser != null) {
         newUser.user.updateProfile(displayName: name);
-        _db.collection('users').doc(newUser.user.uid).set({
-          "email": email,
-          "name": name,
-          "lastseen": DateTime.now()
-        });
+        _db
+            .collection('users')
+            .doc(newUser.user.uid)
+            .set({"email": email, "name": name, "lastseen": DateTime.now()});
         Navigator.popAndPushNamed(context, VerifyScreen.routeName);
       }
     } catch (e) {
@@ -169,8 +164,7 @@ class _SignUpFormState extends State<SignUpForm> {
           builder: (ctx) {
             return AlertDialog(
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10)
-              ),
+                  borderRadius: BorderRadius.circular(10)),
               title: Text('Error'),
               content: Text(e.toString()),
               actions: [
@@ -182,39 +176,36 @@ class _SignUpFormState extends State<SignUpForm> {
                 ),
               ],
             );
-          }
-      );
+          });
     }
   }
 
-  Future <void> signInGoogle() async {
+  Future<void> signInGoogle() async {
     try {
       final GoogleSignInAccount googleUser = await GoogleSignIn().signIn();
-      final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser.authentication;
       final GoogleAuthCredential credential = GoogleAuthProvider.credential(
         accessToken: googleAuth.accessToken,
         idToken: googleAuth.idToken,
       );
-      final User user =
-          (await _auth.signInWithCredential(credential)).user;
-      if(user != null) {
+      final User user = (await _auth.signInWithCredential(credential)).user;
+      if (user != null) {
         _db.collection('users').doc(user.uid).set({
-          "name" : user.displayName,
-          "lastseen" : DateTime.now(),
-          "email" : user.email,
+          "name": user.displayName,
+          "lastseen": DateTime.now(),
+          "email": user.email,
         });
         Navigator.popAndPushNamed(context, HomePage.routeName);
       }
       return await FirebaseAuth.instance.signInWithCredential(credential);
-
     } catch (e) {
       showDialog(
           context: context,
           builder: (ctx) {
             return AlertDialog(
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10)
-              ),
+                  borderRadius: BorderRadius.circular(10)),
               title: Text('Error'),
               content: Text(e.toString()),
               actions: [
@@ -226,10 +217,8 @@ class _SignUpFormState extends State<SignUpForm> {
                 ),
               ],
             );
-          }
-      );
+          });
     }
-
   }
 
   Future<void> signInFacebook() async {
@@ -239,8 +228,7 @@ class _SignUpFormState extends State<SignUpForm> {
       final FacebookAuthCredential credential = FacebookAuthProvider.credential(
         accessToken.token,
       );
-      final User user =
-          (await _auth.signInWithCredential(credential)).user;
+      final User user = (await _auth.signInWithCredential(credential)).user;
       if (user != null) {
         _db.collection('users').doc(user.uid).set({
           "name": user.displayName,
@@ -257,8 +245,7 @@ class _SignUpFormState extends State<SignUpForm> {
           builder: (ctx) {
             return AlertDialog(
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10)
-              ),
+                  borderRadius: BorderRadius.circular(10)),
               title: Text('Error'),
               content: Text(e.toString()),
               actions: [
@@ -270,10 +257,7 @@ class _SignUpFormState extends State<SignUpForm> {
                 ),
               ],
             );
-          }
-      );
+          });
     }
   }
-
 }
-

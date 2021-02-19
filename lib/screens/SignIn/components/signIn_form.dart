@@ -30,9 +30,9 @@ class _SignFormState extends State<SignForm> {
           children: [
             SizedBox(height: 60),
             buildEmailFormField(),
-            SizedBox(height: 30),
+            SizedBox(height: 24),
             buildPasswordFormField(),
-            SizedBox(height: 10),
+            SizedBox(height: 24),
             Row(
               children: [
                 Checkbox(
@@ -65,12 +65,15 @@ class _SignFormState extends State<SignForm> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SocialCard(
-                  icon: "assets/icons/facebook-2.svg",
-                  press: signInFacebook,
-                ),
+                    icon: "assets/icons/facebook-2.svg",
+                    press: signInFacebook,
+                    color: Color(0xFF4267B2),
+                    iconColor: Colors.white),
                 SocialCard(
                   icon: "assets/icons/google-icon.svg",
                   press: signInGoogle,
+                  color: Color(0xFFe0e0e0),
+                  iconColor: null,
                 ),
               ],
             ),
@@ -85,25 +88,24 @@ class _SignFormState extends State<SignForm> {
       controller: _emailController,
       keyboardType: TextInputType.emailAddress,
       decoration: InputDecoration(
-        labelText: 'Email',
         hintText: 'Email',
         focusColor: mainPrimaryColor,
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: Icon(Icons.mail_outline),
+        suffixIcon: Icon(
+          Icons.mail_outline,
+          color: mainTextPressedColor,
+        ),
         contentPadding: EdgeInsets.symmetric(
-          horizontal: 50,
-          vertical: 20,
+          horizontal: 0,
+          vertical: 10,
         ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
+        border: UnderlineInputBorder(
+            borderSide: BorderSide(color: mainPrimaryColor)),
+        enabledBorder: UnderlineInputBorder(
           borderSide: BorderSide(color: mainTextPressedColor),
-          gapPadding: 10,
         ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide: BorderSide(color: mainPrimaryColor),
-          gapPadding: 10,
-        ),
+        focusedBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: mainPrimaryColor)),
       ),
     );
   }
@@ -113,24 +115,20 @@ class _SignFormState extends State<SignForm> {
       controller: _passwordController,
       obscureText: true,
       decoration: InputDecoration(
-        labelText: 'Parolă',
         hintText: 'Parolă',
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: Icon(Icons.lock_outline),
+        suffixIcon: Icon(Icons.lock_outline, color: mainTextPressedColor),
         contentPadding: EdgeInsets.symmetric(
-          horizontal: 40,
-          vertical: 20,
+          horizontal: 0,
+          vertical: 10,
         ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
+        border: UnderlineInputBorder(
+            borderSide: BorderSide(color: mainPrimaryColor)),
+        enabledBorder: UnderlineInputBorder(
           borderSide: BorderSide(color: mainTextPressedColor),
-          gapPadding: 10,
         ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide: BorderSide(color: mainPrimaryColor),
-          gapPadding: 10,
-        ),
+        focusedBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: mainPrimaryColor)),
       ),
     );
   }

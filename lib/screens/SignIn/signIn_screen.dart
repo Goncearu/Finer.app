@@ -11,11 +11,8 @@ class SignInScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-            'Sign In',
-          style: TextStyle(
-              color: mainPrimaryColor,
-              fontSize: 20
-          ),
+          'Sign In',
+          style: TextStyle(color: mainPrimaryColor, fontSize: 20),
         ),
       ),
       body: SignInBody(),

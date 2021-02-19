@@ -21,6 +21,7 @@ dependencies:
   permission_handler: ^5.1.0+2
   salomon_bottom_bar: ^2.0.1
   credit_card: 0.1.6
+  customappbar: ^1.0.0
 
 
 dev_dependencies:

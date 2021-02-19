@@ -11,21 +11,33 @@ class LogInRequestButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 2),
-      child: RaisedButton(
-        elevation: 10,
-        padding: EdgeInsets.all(0),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        onPressed: press,
-        child: SizedBox(
-          width: double.infinity,
-          height: 55,
-          child: Container(
-            decoration: BoxDecoration(
-                gradient: mainPrimaryGradient,
-                borderRadius: BorderRadius.circular(10)),
-            child: Center(
-              child: Text(text, style: Theme.of(context).textTheme.button),
+      padding: const EdgeInsets.only(top: 4, bottom: 30),
+      child: Center(
+        child: Container(
+          height: 50.0,
+          decoration: BoxDecoration(boxShadow: [mainBoxShadow]),
+          child: RaisedButton(
+            onPressed: press,
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(18.0)),
+            padding: EdgeInsets.all(0.0),
+            elevation: 0,
+            child: Ink(
+              decoration: BoxDecoration(
+                  gradient: mainPrimaryGradient,
+                  borderRadius: BorderRadius.circular(18.0)),
+              child: Container(
+                alignment: Alignment.center,
+                child: Text(
+                  text,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
             ),
           ),
         ),

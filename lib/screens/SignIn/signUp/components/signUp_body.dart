@@ -1,5 +1,6 @@
 import 'package:armenu_app/screens/SignIn/signUp/components/signUp_form.dart';
 import 'package:flutter/material.dart';
+import 'package:armenu_app/utils/styles.dart';
 
 class SignUpBody extends StatelessWidget {
   @override
@@ -12,14 +13,13 @@ class SignUpBody extends StatelessWidget {
           children: [
             SizedBox(height: 30),
             Text(
-              'Creaza cont',
-              style:
-                  Theme.of(context).textTheme.headline1.copyWith(fontSize: 30),
+              'Creează cont',
+              style: Theme.of(context).textTheme.headline1,
             ),
             Text(
-              'Completeaza datele pentru crearea contului \n sau conecteaza-te cu contul de Facebook sau Google ',
-              style:
-                  Theme.of(context).textTheme.bodyText1.copyWith(fontSize: 12),
+              'Completează datele pentru crearea contului \n sau conectează-te cu conturile sociale ',
+              style: TextStyle(
+                  color: mainTextSemiBlack, fontSize: 14, height: 1.3),
               textAlign: TextAlign.center,
             ),
             SignUpForm(),

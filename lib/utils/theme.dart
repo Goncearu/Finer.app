@@ -1,6 +1,8 @@
 import 'package:armenu_app/utils/styles.dart';
 import 'package:flutter/material.dart';
 
+class LightThemeData {}
+
 ThemeData theme() {
   return ThemeData(
     scaffoldBackgroundColor: Color(0xFFFFFFFF),

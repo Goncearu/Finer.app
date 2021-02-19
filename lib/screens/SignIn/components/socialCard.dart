@@ -1,18 +1,14 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-
 class SocialCard extends StatelessWidget {
-  const SocialCard({
-    Key key,
-    this.icon,
-    this.press,
-
-  }) : super(key: key);
+  const SocialCard({Key key, this.icon, this.press, this.color, this.iconColor})
+      : super(key: key);
 
   final String icon;
   final Function press;
+  final Color color;
+  final Color iconColor;
 
   @override
   Widget build(BuildContext context) {
@@ -24,10 +20,13 @@ class SocialCard extends StatelessWidget {
         height: 50,
         width: 50,
         decoration: BoxDecoration(
-          color: Color(0xFFF5F6F9),
+          color: color,
           shape: BoxShape.circle,
         ),
-        child: SvgPicture.asset(icon),
+        child: SvgPicture.asset(
+          icon,
+          color: iconColor,
+        ),
       ),
     );
   }

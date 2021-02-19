@@ -11,7 +11,7 @@ class _OrderTableState extends State<OrderTable> {
   Widget build(BuildContext context) {
     return Container(
         width: double.infinity,
-        margin: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+        margin: EdgeInsets.symmetric(horizontal: 0, vertical: 10),
         height: 350,
         decoration: BoxDecoration(
           color: Colors.white,

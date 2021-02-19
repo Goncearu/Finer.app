@@ -18,19 +18,19 @@ class _VirtualTableBodyState extends State<VirtualTableBody> {
           children: [
             Container(
               width: double.infinity,
-              margin: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+              margin: EdgeInsets.symmetric(horizontal: 0, vertical: 10),
               height: 150,
               decoration: BoxDecoration(
                   gradient: mainPrimaryGradient,
-                  borderRadius: BorderRadius.circular(20)),
+                  borderRadius: BorderRadius.circular(18)),
             ),
             Container(
               width: double.infinity,
-              margin: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+              margin: EdgeInsets.symmetric(horizontal: 0, vertical: 5),
               height: 100,
               decoration: BoxDecoration(
                   color: Colors.black12,
-                  borderRadius: BorderRadius.circular(20)),
+                  borderRadius: BorderRadius.circular(18)),
             ),
             OrderTable(),
             PaymentButton(press: () {})
